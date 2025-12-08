@@ -13,7 +13,7 @@ export const Timeline: React.FC = () => {
 
     const pixelsPerSecond = 50 * state.zoom;
     const totalDuration = state.segments.reduce((sum, seg) => sum + seg.duration, 0);
-    const timelineWidth = Math.max(800, totalDuration * pixelsPerSecond); // Min width 800px
+    const timelineWidth = Math.max(800, totalDuration * pixelsPerSecond);
 
     const handleTimelineClick = (e: React.MouseEvent) => {
         if (!timelineRef.current) return;
@@ -44,7 +44,6 @@ export const Timeline: React.FC = () => {
                 <ZoomControls />
             </div>
 
-            {/* Timeline Scroll Container */}
             <div
                 ref={timelineRef}
                 className="timeline-container"
@@ -60,7 +59,6 @@ export const Timeline: React.FC = () => {
                 }}
                 onClick={handleTimelineClick}
             >
-                {/* Inner timeline content - this can be wider than container */}
                 <div
                     style={{
                         position: 'relative',

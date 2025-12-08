@@ -14,12 +14,10 @@ export const Controls: React.FC = () => {
             );
 
             if (!currentSegment) {
-                console.log('⚠️ Not in any segment, resetting to beginning');
                 dispatch({ type: 'SET_CURRENT_TIME', payload: 0 });
             }
 
             if (state.playMode === 'all') {
-                console.log('▶ Play button clicked - setting SINGLE mode');
                 dispatch({ type: 'SET_PLAY_MODE', payload: 'single' });
             }
         }
@@ -27,7 +25,6 @@ export const Controls: React.FC = () => {
     };
 
     const handlePlayAll = () => {
-        console.log('▶▶ Play All button clicked - setting ALL mode');
         dispatch({ type: 'SET_PLAY_MODE', payload: 'all' });
         dispatch({ type: 'SET_CURRENT_TIME', payload: 0 });
 
@@ -39,7 +36,6 @@ export const Controls: React.FC = () => {
     };
 
     const handleStop = () => {
-        console.log('⏹ Stop button clicked');
         if (state.isPlaying) {
             dispatch({ type: 'TOGGLE_PLAY' });
         }

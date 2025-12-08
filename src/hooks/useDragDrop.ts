@@ -33,7 +33,6 @@ export const useDragDrop = (options: DragOptions) => {
         let deltaX = e.clientX - startPos.current.x;
         let deltaY = e.clientY - startPos.current.y;
 
-        // Apply axis constraints
         if (options.axis === 'x') deltaY = 0;
         if (options.axis === 'y') deltaX = 0;
 

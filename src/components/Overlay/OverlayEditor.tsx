@@ -51,7 +51,6 @@ export const OverlayEditor: React.FC = () => {
             height: 0.1,
         };
 
-        console.log('Adding overlay:', overlay);
         dispatch({ type: 'ADD_OVERLAY', payload: overlay });
 
         setText('');

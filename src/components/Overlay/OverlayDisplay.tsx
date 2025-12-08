@@ -28,15 +28,12 @@ export const OverlayDisplay: React.FC<OverlayDisplayProps> = ({ overlay }) => {
             const deltaX = moveE.clientX - startPos.current.x;
             const deltaY = moveE.clientY - startPos.current.y;
 
-            // Convert pixel delta to relative coordinates
             const relDeltaX = deltaX / parent.clientWidth;
             const relDeltaY = deltaY / parent.clientHeight;
 
-            // Calculate new position
             let newX = startOverlayPos.current.x + relDeltaX;
             let newY = startOverlayPos.current.y + relDeltaY;
 
-            // Clamp to boundaries
             newX = Math.max(0, Math.min(1 - overlay.width, newX));
             newY = Math.max(0, Math.min(1 - overlay.height, newY));
 

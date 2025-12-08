@@ -42,7 +42,6 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({
             let deltaX = moveE.clientX - startPos.current.x;
             let deltaY = moveE.clientY - startPos.current.y;
 
-            // Apply axis constraints
             if (axis === 'x') deltaY = 0;
             if (axis === 'y') deltaX = 0;
 

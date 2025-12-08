@@ -25,8 +25,6 @@ export const VideoPreview: React.FC = () => {
 
         if (!videoElem) return;
 
-        console.log(`🔄 Loading "${segment.label}" (Seg ${segmentIndex}) into Video${videoPlayer}`);
-
         if (videoPlayer === 1) {
             video1SegmentIndexRef.current = segmentIndex;
         } else {
@@ -39,7 +37,6 @@ export const VideoPreview: React.FC = () => {
         videoElem.onloadeddata = () => {
             const localTime = state.currentTime - segment.startTime;
             videoElem.currentTime = Math.max(0, Math.min(localTime, segment.duration));
-            console.log(`✅ Video${videoPlayer} ready: ${segment.label} | Duration: ${videoElem.duration}`);
 
             if (state.isPlaying) {
                 videoElem.play();
@@ -56,8 +53,6 @@ export const VideoPreview: React.FC = () => {
 
         if (!videoElem) return;
 
-        console.log(`🎬 Loading "${nextSegment.label}" (Seg ${nextSegmentIndex}) into Video${inactivePlayer} for transition`);
-
         if (inactivePlayer === 1) {
             video1SegmentIndexRef.current = nextSegmentIndex;
         } else {
@@ -71,7 +66,6 @@ export const VideoPreview: React.FC = () => {
             videoElem.onloadeddata = () => {
                 videoElem.currentTime = 0;
                 videoElem.play();
-                console.log(`✅ Video${inactivePlayer} ready for transition | Duration: ${videoElem.duration}`);
                 resolve();
             };
         });
@@ -93,10 +87,8 @@ export const VideoPreview: React.FC = () => {
         }
 
         if (targetIndex >= 0 && targetIndex !== currentSegmentIndexRef.current) {
-            console.log(`📍 Segment change: ${currentSegmentIndexRef.current} → ${targetIndex}`);
 
             if (transitionCompletedRef.current) {
-                console.log(`✅ Post-transition segment change - video already loaded and playing`);
                 currentSegmentIndexRef.current = targetIndex;
                 transitionCompletedRef.current = false;
 
@@ -105,7 +97,6 @@ export const VideoPreview: React.FC = () => {
                 const activeVideoSegIndex = whichVideoPlaying.current === 1 ? video1SegmentIndexRef.current : video2SegmentIndexRef.current;
 
                 if (activeVideoSegIndex === targetIndex) {
-                    console.log(`✅ Segment ${targetIndex} already loaded in Video${whichVideoPlaying.current}`);
                     currentSegmentIndexRef.current = targetIndex;
                 } else {
                     currentSegmentIndexRef.current = targetIndex;
@@ -165,7 +156,6 @@ export const VideoPreview: React.FC = () => {
                 }
             }
 
-            // Apply crossfade during transition
             if (isTransitioning && transition) {
                 const transitionStartTime = segment.duration - transition.duration;
                 if (localTime >= transitionStartTime) {
@@ -184,16 +174,12 @@ export const VideoPreview: React.FC = () => {
             const timeUntilSegmentEnd = segment.duration - localTime;
 
             if (timeUntilSegmentEnd <= 0.03 || localTime >= segment.duration) {
-                console.log('🚨 Segment end');
-
                 if (state.playMode === 'all' && currentIndex + 1 < state.segments.length) {
 
                     if (isTransitioning) {
                         activeVideo.pause();
 
                         whichVideoPlaying.current = whichVideoPlaying.current === 1 ? 2 : 1;
-                        console.log(`🔄 Switched to Video${whichVideoPlaying.current}`);
-
                         if (whichVideoPlaying.current === 1) {
                             setVideo1Opacity(1);
                             setVideo2Opacity(0);
@@ -212,8 +198,6 @@ export const VideoPreview: React.FC = () => {
                     dispatch({ type: 'SET_CURRENT_TIME', payload: nextSegment.startTime });
 
                 } else {
-                    console.log('🏁 Stop');
-
                     video1.pause();
                     video2.pause();
 

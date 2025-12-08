@@ -25,18 +25,16 @@ export const SegmentManager: React.FC = () => {
         setLabel(file.name.replace(/\.[^/.]+$/, ''));
         setLoadingMetadata(true);
 
-        // Create object URL
         const objectUrl = URL.createObjectURL(file);
         setVideoSource(objectUrl);
 
-        // Get video duration using promises
         try {
             const videoDuration = await getVideoDuration(objectUrl);
-            setDuration(Math.round(videoDuration * 100) / 100); // Round to 2 decimal places for accuracy
+            setDuration(Math.round(videoDuration * 100) / 100);
             setLoadingMetadata(false);
         } catch (error) {
             console.error('Failed to load video metadata:', error);
-            setDuration(10); // Default fallback
+            setDuration(10);
             setLoadingMetadata(false);
         }
     };
@@ -48,7 +46,7 @@ export const SegmentManager: React.FC = () => {
 
             video.onloadedmetadata = () => {
                 resolve(video.duration);
-                video.src = ''; // Clean up
+                video.src = '';
             };
 
             video.onerror = () => {
@@ -56,7 +54,6 @@ export const SegmentManager: React.FC = () => {
                 video.src = '';
             };
 
-            // Set timeout for loading
             setTimeout(() => {
                 reject(new Error('Timeout loading video metadata'));
                 video.src = '';

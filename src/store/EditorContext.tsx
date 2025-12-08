@@ -127,7 +127,6 @@ function editorReducer(state: EditorState, action: Action): EditorState {
             return { ...state, selectedOverlayId: action.payload };
         }
 
-        // ADD THIS CASE
         case 'SET_PLAY_MODE': {
             return { ...state, playMode: action.payload };
         }

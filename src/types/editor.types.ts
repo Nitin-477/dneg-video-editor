@@ -1,4 +1,3 @@
-// types/editor.types.ts - ADD playMode field
 export interface Segment {
     id: string;
     startTime: number;
@@ -37,5 +36,5 @@ export interface EditorState {
     zoom: number;
     selectedSegmentId: string | null;
     selectedOverlayId: string | null;
-    playMode: 'single' | 'all'; // ADD THIS LINE
+    playMode: 'single' | 'all';
 }

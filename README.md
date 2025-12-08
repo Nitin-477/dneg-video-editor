@@ -23,7 +23,7 @@ npm --version   # Should be 9.0.0 or higher
 ### 1. Clone or Extract the Repository
 
 ```bash
-cd path/to/dneg-video-editor
+https://github.com/Nitin-477/dneg-video-editor.git
 ```
 
 ### 2. Install Dependencies

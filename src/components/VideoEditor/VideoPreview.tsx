@@ -6,7 +6,7 @@ export const VideoPreview: React.FC = () => {
     const { state, dispatch } = useEditor();
     const video1Ref = useRef<HTMLVideoElement>(null);
     const video2Ref = useRef<HTMLVideoElement>(null);
-    const [videoError, setVideoError] = useState<string | null>(null);
+    const [videoError] = useState<string | null>(null);
     const currentSegmentIndexRef = useRef<number>(-1);
     const pollIntervalRef = useRef<NodeJS.Timeout | null>(null);
     const [video1Opacity, setVideo1Opacity] = useState(1);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditorProvider } from './store/EditorContext';
 import { VideoEditor } from './components/VideoEditor/VideoEditor';
 

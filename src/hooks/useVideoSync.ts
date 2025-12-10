@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useEditor } from '../store/EditorContext';
 
 export const useVideoSync = (videoRef: React.RefObject<HTMLVideoElement>) => {
-    const { state, dispatch } = useEditor();
-    const animationFrameRef = useRef<number>();
+    const { state } = useEditor();
+    const animationFrameRef = useRef<number | undefined>(undefined);
 
     useEffect(() => {
         if (!videoRef.current) return;

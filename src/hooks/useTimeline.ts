@@ -3,7 +3,7 @@ import { useEditor } from '../store/EditorContext';
 
 export const useTimeline = () => {
     const { state, dispatch } = useEditor();
-    const animationFrameRef = useRef<number>();
+    const animationFrameRef = useRef<number | undefined>(undefined);
 
     useEffect(() => {
         if (!state.isPlaying) {

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useEditor } from '../../store/EditorContext';
 import { OverlayBlock } from '../Overlay/OverlayBlock';
 

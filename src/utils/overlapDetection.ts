@@ -15,7 +15,7 @@ export const detectOverlap = (
 
 export const preventOverlap = (
     segments: Segment[],
-    movedSegment: Segment
+    _movedSegment: Segment
 ): Segment[] => {
     const sorted = [...segments].sort((a, b) => a.startTime - b.startTime);
     let currentTime = 0;

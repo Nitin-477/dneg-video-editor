@@ -1,15 +1,34 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import federation from '@originjs/vite-plugin-federation';
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react({
-      babel: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
+      /*  babel: {
+         plugins: ['babel-plugin-react-compiler'],
+       }, */
     }),
+    federation({
+      name: 'video_editor_remote',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './VideoEditor': './src/App.tsx',
+      },
+      shared: {
+        react: { singleton: true, eager: true },
+        'react-dom': { singleton: true },
+
+      },
+      'react-dom': {
+        singleton: true,
+        eager: true,
+      },
+    }
+    ),
   ],
   resolve: {
     alias: {
@@ -21,12 +40,16 @@ export default defineConfig({
       '@types': path.resolve(__dirname, './src/types'),
     },
   },
-  server: {
-    port: 3000,
-    open: true,
-  },
   build: {
-    outDir: 'dist',
-    sourcemap: true,
+    target: 'esnext',
+    minify: false,
+    cssCodeSplit: false,
+  },
+  server: {
+    port: 3001,
+    cors: true,
+  },
+  preview: {
+    port: 3001,
   },
 });

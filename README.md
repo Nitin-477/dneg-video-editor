@@ -1,7 +1,5 @@
 <img width="1914" height="1084" alt="image" src="https://github.com/user-attachments/assets/997fa42e-fc5a-4674-959f-04e5e0c1fe44" />
 
-
-
 # DNEG Video Editor
 
 A professional video editing application built with React, TypeScript, and Vite. Supports multi-segment video composition, transitions, overlays, and timeline-based editing.
@@ -53,7 +51,7 @@ Start the development server with hot module reloading:
 npm run dev
 ```
 
-The application will be available at `http://localhost:3000`
+The application will be available at `http://localhost:3001`
 
 ### 4. Build for Production
 
